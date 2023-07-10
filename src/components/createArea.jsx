@@ -2,15 +2,18 @@ import { useState } from "react";
 import Zoom from "@mui/material/Zoom";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
+
 function CreateArea(props) {
+  const emptyNote = {
+    title: "",
+    content: "",
+  };
+
   const [isExpanded, setExpanded] = useState(false);
   function expand() {
     setExpanded(true);
   }
-  const [note, setNote] = useState({
-    title: "",
-    content: "",
-  });
+  const [note, setNote] = useState(emptyNote);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -24,10 +27,7 @@ function CreateArea(props) {
 
   function submitNote(event) {
     props.onAdd(note);
-    setNote({
-      title: "",
-      content: "",
-    });
+    setNote(emptyNote);
     event.preventDefault();
   }
   return (
